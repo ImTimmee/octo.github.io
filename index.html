@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Chatbot</title>
+</head>
+<body>
+  <h1>My Chatbot</h1>
+  <form id="chatbot-form" method="get" action="#">
+    <label for="input">Enter your message:</label>
+    <input type="text" id="input" name="input">
+    <button type="submit">Send</button>
+  </form>
+  <div id="chatbot-response"></div>
+  <script src="https://unpkg.com/spaCy@latest/dist/spaCy.js"></script>
+  <script>
+	console.log(nlp);
+    console.log(doc);
+	console.log(response);
+	console.log(spaCy);
+	console.log(document.getElementById('chatbot-response').textContent);
+	console.log(document.getElementById('input').value);
+
+
+	document.getElementById('chatbot-form').addEventListener('submit', function(event) {
+  console.log('Form submitted');
+
+    // Set up a listener for the chatbot form
+    document.getElementById('chatbot-form').addEventListener('submit', function(event) {
+      // Prevent the form from actually submitting
+      event.preventDefault();
+      
+      // Get the user's input
+      var input = document.getElementById('input').value;
+      
+      // Use spaCy to process the input
+      var nlp = spaCy.nlp(input);
+      var doc = nlp.doc;
+      
+      // Generate a response
+      var response = "I'm not sure what you mean by '" + doc.text + "'. Can you please rephrase your question or statement?";
+      
+      // Display the response
+      var chatbotResponseElement = document.getElementById('chatbot-response');
+      chatbotResponseElement.textContent = response;
+	});
+})
+  </script>
+</body>
+</html>
